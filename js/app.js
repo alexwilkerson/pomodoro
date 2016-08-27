@@ -1,3 +1,6 @@
+var beep = document.createElement("audio");
+beep.setAttribute("src", "beep.mp3");
+
 var state = "off";
 
 var sessionTime = 25;
@@ -53,7 +56,11 @@ function updateDisplay() {
 
 function decrementSession () {
   if (sessionSeconds === 0 && sessionMinutes === 0 && breakMinutes === 0 && breakSeconds === 0) {
+    beep.play();
     reset();
+  }
+  if (sessionSeconds === 0 && sessionMinutes === 0 && breakMinutes === breakTime) {
+    beep.play();
   }
   if (sessionSeconds === 0 && sessionMinutes === 0) {
     if (breakSeconds === 0) {
